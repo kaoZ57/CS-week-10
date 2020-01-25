@@ -46,3 +46,22 @@ func FindFileFromExtension(extension []string, dir string, files *[]string, SMAL
 		}
 	}
 }
+
+func main() {
+	start := time.Now()
+	drives := getDrives()
+	files := []string{}
+	SMALL := []string{}
+	BIG := []string{}
+	for _, d := range drives {
+		FindFileFromExtension([]string{".jpg", ".gif"}, d, &files, &SMALL, &BIG)
+	}
+	for _, F := range files {
+		fmt.Printf("Path : %v\n", F)
+	}
+	fmt.Printf("Files in one month : %v\n", len(files))
+	fmt.Printf("Small file : %v\n", len(SMALL))
+	fmt.Printf("big file : %v\n", len(BIG))
+	fmt.Println("Run time : ", time.Since(start))
+}
+
